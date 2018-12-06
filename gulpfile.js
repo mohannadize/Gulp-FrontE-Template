@@ -11,7 +11,7 @@ const streamify = require("gulp-streamify")
 let build = "dev";
 
 gulp.task("images",(x)=>{
-     
+
     let ins = 'src/imgs/**/*.{jpg,JPG,jpeg,JPEG,png,svg,gif}';
     let out = 'dev/imgs/';
     compress_images(ins, out, {compress_force: false, statistic: false, autoupdate: true}, false,
@@ -23,7 +23,7 @@ gulp.task("images",(x)=>{
                 return x();
             }
     });
-    
+
 })
 
 gulp.task("styles",()=>{
@@ -68,7 +68,7 @@ gulp.task("dev",gulp.series("html","styles","js",()=>{
     gulp.watch("src/**/*.html").on('change', gulp.series("html", browserSync.reload));
     gulp.watch("src/js/**/*.js").on('change', gulp.series("js", browserSync.reload));
     gulp.watch("src/sass/**/*.scss").on("change", gulp.series("styles", browserSync.reload));
-    gulp.watch("src/sw.js").on("change", gulp.series("sw", browserSync.reload));
+    // gulp.watch("src/sw.js").on("change", gulp.series("sw", browserSync.reload));
 }))
 
 gulp.task("build",gulp.series((x)=>{build = "prod";x()},"html","styles","js"))
